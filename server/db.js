@@ -77,7 +77,7 @@ const createReservation = async ({
   party_count,
 }) => {
   const SQL = `
-    INSERT INTO reservations(uuid.v4, customer_id, restaurant_id, date, party_count)
+    INSERT INTO reservations(id, customer_id, restaurant_id, date, party_count)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING *
     `;
@@ -90,6 +90,7 @@ const createReservation = async ({
   ]);
   return result.rows[0];
 };
+
 const destroyReservation = async (reservation_id) => {
   console.log(reservation_id);
   const SQL = `
